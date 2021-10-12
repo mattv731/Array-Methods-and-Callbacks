@@ -28,11 +28,20 @@ Use getFinals to do the following:
 
 hint - you should be looking at the stage key inside of the objects
 */
-
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(array){
+    const finalsTeams = [];
+    for (let i = 0; i < array.length; i++){
+        if (array[i].Stage === 'Final'){
+            finalsTeams.push(array[i])
+        }else{};
+ }
+ return finalsTeams
 }
-
+// const getFinals = fifaData.filter(function(item){
+//     return item.Stage ==='Final'
+// })
+// console.log(getFinals)
+// console.log(getFinals(fifaData));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
