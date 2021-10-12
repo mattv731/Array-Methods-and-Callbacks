@@ -28,32 +28,35 @@ Use getFinals to do the following:
 
 hint - you should be looking at the stage key inside of the objects
 */
-function getFinals(array){
-    const finalsTeams = [];
-    for (let i = 0; i < array.length; i++){
-        if (array[i].Stage === 'Final'){
-            finalsTeams.push(array[i])
-        }else{};
- }
- return finalsTeams
-}
-// const getFinals = fifaData.filter(function(item){
-//     return item.Stage ==='Final'
-// })
-// console.log(getFinals)
-// console.log(getFinals(fifaData));
-
-
+// function getFinals(fifaData){
+//     const finalsTeams = [];
+//     for (let i = 0; i < fifaData.length; i++){
+//         if (fifaData[i].Stage === 'Final'){
+//             finalsTeams.push(fifaData[i])
+//         }else{};
+//  }
+//  return finalsTeams
+// }
+// console.log(getFinals(fifaData))
+function getFinals(fifaData) {
+    let finals = fifaData.filter(function(item){
+        return item.Stage === 'Final'
+})
+return finals;
+};
+console.log(getFinals);
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
 1. Receive an array
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
-
-function getYears(/* code here */) {
-    /* code here */
+function getYears(data, getFinalsCb){
+    const years = getFinalsCb(data).map(function(item){
+        return item.Year
+    });
+    return years
 }
-
+console.log(getYears(fifaData, getFinals))
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -64,10 +67,17 @@ Use the higher-order function getWinners to do the following:
 4. Returns the names of all winning countries in an array called `winners` */ 
 
 // Don't care about over time, just return points.
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(data, getFinalsCb) {
+    const winners = getFinalsCb(data).map(function(item){
+        if (item["Home Team Goals"] > item["Away Team Goals"]){
+            return item["Home Team Name"]
+        }else{
+            return item["Away Team Name"]
+        }
+    });
+    return winners;
 }
-
+// console.log(getWinners(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
